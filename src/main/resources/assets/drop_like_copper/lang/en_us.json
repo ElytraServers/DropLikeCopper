@@ -1,0 +1,8 @@
+{
+  "item.drop_like_copper.drop_test_tool": "Drop Test Tool",
+  "item.drop_like_copper.drop_test_tool.message.title": "Done! %s iterations simulated while %s elapsed",
+  "item.drop_like_copper.drop_test_tool.message.drop": "- %s x%s",
+  "item.drop_like_copper.drop_test_tool.tooltip.1": "§7Use on a block with tool on your offhand to get the simulated drops of the interacted block destroyed by the offhand item.",
+  "item.drop_like_copper.drop_test_tool.tooltip.2": "§7The more stack count, the more iterations to be simulated, resulting in a average drop count.",
+  "item.drop_like_copper.drop_test_tool.tooltip.3": "Current simulation iteration: §e%s"
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "drop_like_copper:item/drop_test_tool"
+  }
+}

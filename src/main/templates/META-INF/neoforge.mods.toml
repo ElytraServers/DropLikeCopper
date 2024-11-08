@@ -1,0 +1,45 @@
+modLoader = "kotlinforforge"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
+issueTrackerURL="https://github.com/ElytraServers/DropLikeCopper/issues"
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
+# A URL to query for updates for this mod. See the JSON update specification https://docs.neoforge.net/docs/misc/updatechecker/
+#updateJSONURL="https://change.me.example.invalid/updates.json"
+displayURL = "https://github.com/ElytraServers/DropLikeCopper"
+logoFile="logo.png"
+credits=""
+authors = "${mod_authors}"
+description = '''${mod_description}'''
+
+#[[mixins]]
+#config = "${mod_id}.mixins.json"
+
+#[[accessTransformers]]
+#file="META-INF/accesstransformer.cfg"
+
+# The coremods config file path is not configurable and is always loaded from META-INF/coremods.json
+
+[[dependencies."${mod_id}"]]
+modId = "neoforge"
+type = "required"
+# reason="..."
+versionRange = "${neo_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."${mod_id}"]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."${mod_id}"]]
+modId = "alltheores"
+type = "required"
+versionRange = "*"
+side = "SERVER"
+ordering = "AFTER"
