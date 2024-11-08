@@ -4,25 +4,25 @@ import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
-import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.Rarity
-import net.minecraft.world.item.TooltipFlag
 import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.level.block.Block
+import kotlin.collections.component1
+import kotlin.collections.component2
+import kotlin.collections.iterator
 import kotlin.time.measureTimedValue
 
-object DropTestToolItem : Item(Properties().stacksTo(16).rarity(Rarity.RARE)) {
+/**
+ * This part is separated from `Drop Test Tool`, a removed item, for server-side-only compatibility.
+ * It may be returned with some commands or other ways that don't affect the server-side-only compat.
+ */
+object DropTestTool {
 
 	/**
 	 * Get the simulation iterating count from the stack size of the item.
 	 */
 	internal fun ItemStack.getSimulationIteratingCount(): Int {
-		return if(item == DropLikeCopper.ModItems.DROP_TEST_TOOL) {
-			1 shl (count - 1) // 2^count
-		} else {
-			0
-		}
+		return 1 shl (count - 1) // 2^count
 	}
 
 	/**
@@ -53,7 +53,7 @@ object DropTestToolItem : Item(Properties().stacksTo(16).rarity(Rarity.RARE)) {
 			}
 	}
 
-	override fun useOn(context: UseOnContext): InteractionResult {
+	fun useOn(context: UseOnContext): InteractionResult {
 		// need to be held in the main hand
 		if(context.hand != InteractionHand.MAIN_HAND) return InteractionResult.PASS
 
@@ -81,16 +81,13 @@ object DropTestToolItem : Item(Properties().stacksTo(16).rarity(Rarity.RARE)) {
 			return InteractionResult.SUCCESS
 		}
 
-		return super.useOn(context)
+		return InteractionResult.PASS
 	}
 
-	override fun appendHoverText(
+	fun appendHoverText(
 		stack: ItemStack,
-		context: TooltipContext,
-		tooltipComponents: MutableList<Component>,
-		tooltipFlag: TooltipFlag
+		tooltipComponents: MutableList<Component>
 	) {
-		super.appendHoverText(stack, context, tooltipComponents, tooltipFlag)
 		tooltipComponents += Component.translatable("item.drop_like_copper.drop_test_tool.tooltip.1")
 		tooltipComponents += Component.translatable("item.drop_like_copper.drop_test_tool.tooltip.2")
 		tooltipComponents += Component.translatable(
@@ -98,4 +95,5 @@ object DropTestToolItem : Item(Properties().stacksTo(16).rarity(Rarity.RARE)) {
 			stack.getSimulationIteratingCount()
 		)
 	}
+
 }
